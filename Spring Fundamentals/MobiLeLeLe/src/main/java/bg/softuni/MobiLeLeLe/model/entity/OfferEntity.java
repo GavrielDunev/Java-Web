@@ -1,8 +1,10 @@
 package bg.softuni.MobiLeLeLe.model.entity;
 
+import bg.softuni.MobiLeLeLe.model.entity.enums.EngineEnum;
+import bg.softuni.MobiLeLeLe.model.entity.enums.TransmissionEnum;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @Entity
 @Table(name = "offers")
@@ -28,11 +30,6 @@ public class OfferEntity extends BaseEntity{
     @Column(nullable = false)
     private Integer year;
 
-    @Column(nullable = false)
-    private Instant created;
-
-    private Instant modified;
-
     @ManyToOne
     private ModelEntity model;
 
@@ -43,79 +40,71 @@ public class OfferEntity extends BaseEntity{
         return description;
     }
 
-    public void setDescription(String description) {
+    public OfferEntity setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public EngineEnum getEngine() {
         return engine;
     }
 
-    public void setEngine(EngineEnum engine) {
+    public OfferEntity setEngine(EngineEnum engine) {
         this.engine = engine;
+        return this;
     }
 
     public Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(Integer mileage) {
+    public OfferEntity setMileage(Integer mileage) {
         this.mileage = mileage;
+        return this;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public OfferEntity setPrice(BigDecimal price) {
         this.price = price;
+        return this;
     }
 
     public TransmissionEnum getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(TransmissionEnum transmission) {
+    public OfferEntity setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
+        return this;
     }
 
     public Integer getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public OfferEntity setYear(Integer year) {
         this.year = year;
-    }
-
-    public Instant getCreated() {
-        return created;
-    }
-
-    public void setCreated(Instant created) {
-        this.created = created;
-    }
-
-    public Instant getModified() {
-        return modified;
-    }
-
-    public void setModified(Instant modified) {
-        this.modified = modified;
+        return this;
     }
 
     public ModelEntity getModel() {
         return model;
     }
 
-    public void setModel(ModelEntity model) {
+    public OfferEntity setModel(ModelEntity model) {
         this.model = model;
+        return this;
     }
 
     public UserEntity getSeller() {
         return seller;
     }
 
-    public void setSeller(UserEntity seller) {
+    public OfferEntity setSeller(UserEntity seller) {
         this.seller = seller;
+        return this;
     }
 }
