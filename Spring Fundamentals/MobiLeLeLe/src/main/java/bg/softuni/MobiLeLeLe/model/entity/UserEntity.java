@@ -1,7 +1,7 @@
 package bg.softuni.MobiLeLeLe.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -16,8 +16,8 @@ public class UserEntity extends BaseEntity {
 
     private Boolean isActive;
 
-    @ManyToMany
-    private List<UserRole> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<UserRoleEntity> roles;
 
     private String imageUrl;
 
@@ -69,11 +69,11 @@ public class UserEntity extends BaseEntity {
         return this;
     }
 
-    public List<UserRole> getRoles() {
+    public Set<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public UserEntity setRoles(List<UserRole> roles) {
+    public UserEntity setRoles(Set<UserRoleEntity> roles) {
         this.roles = roles;
         return this;
     }
