@@ -9,6 +9,9 @@ import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 
 public class OfferSummaryView {
+
+    private Long id;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -34,6 +37,15 @@ public class OfferSummaryView {
 
     @Column
     private String model;
+
+    public Long getId() {
+        return id;
+    }
+
+    public OfferSummaryView setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getDescription() {
         return description;
