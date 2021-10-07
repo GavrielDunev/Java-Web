@@ -40,7 +40,7 @@ public class OfferServiceImpl implements OfferService {
                     .setMileage(20)
                     .setModel(this.modelRepository.findById(1L).orElse(null))
                     .setPrice(BigDecimal.valueOf(200000))
-                    .setSeller(this.userRepository.findByUsername("gosho").orElse(null))
+                    .setSeller(this.userRepository.findByUsername("ivan").orElse(null))
                     .setTransmission(TransmissionEnum.AUTOMATIC)
                     .setYear(2021);
 
