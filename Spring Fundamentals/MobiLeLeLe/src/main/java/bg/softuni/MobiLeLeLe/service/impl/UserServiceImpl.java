@@ -4,6 +4,7 @@ import bg.softuni.MobiLeLeLe.model.entity.UserEntity;
 import bg.softuni.MobiLeLeLe.model.entity.UserRoleEntity;
 import bg.softuni.MobiLeLeLe.model.entity.enums.UserRoleEnum;
 import bg.softuni.MobiLeLeLe.model.service.UserLoginServiceModel;
+import bg.softuni.MobiLeLeLe.model.service.UserRegistrationServiceModel;
 import bg.softuni.MobiLeLeLe.repository.UserRepository;
 import bg.softuni.MobiLeLeLe.repository.UserRoleRepository;
 import bg.softuni.MobiLeLeLe.service.UserService;
@@ -28,6 +29,11 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.currentUser = currentUser;
+    }
+
+    @Override
+    public boolean isUsernameFree(String username) {
+        return this.userRepository.findByUsernameIgnoreCase(username).isEmpty();
     }
 
     @Override
@@ -64,6 +70,33 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logout() {
         this.currentUser.clear();
+    }
+
+    @Override
+    public void registerAndLoginUser(UserRegistrationServiceModel userRegisterServiceModel) {
+
+        UserRoleEntity userRole = this.userRoleRepository.findByRole(UserRoleEnum.USER);
+
+        UserEntity newUser = new UserEntity()
+                .setFirstName(userRegisterServiceModel.getFirstName())
+                .setLastName(userRegisterServiceModel.getLastName())
+                .setUsername(userRegisterServiceModel.getUsername())
+                .setPassword(this.passwordEncoder.encode(userRegisterServiceModel.getPassword()))
+                .setActive(true)
+                .setRoles(Set.of(userRole));
+
+        newUser = this.userRepository.save(newUser);
+
+        login(newUser);
+    }
+
+    private void login(UserEntity userEntity) {
+        this.currentUser.setUsername(userEntity.getUsername())
+                .setFirstName(userEntity.getFirstName())
+                .setLastName(userEntity.getLastName())
+                .setLoggedIn(true);
+
+        userEntity.getRoles().forEach(r -> this.currentUser.addRole(r.getRole()));
     }
 
     private void initializeRoles() {
