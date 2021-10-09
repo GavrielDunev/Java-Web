@@ -55,6 +55,12 @@ public class UserController {
             return "redirect:register";
         }
 
+        boolean isUsernameBusy = this.userService.existsByUsername(userRegisterBindingModel.getUsername());
+
+        if (isUsernameBusy) {
+            //TODO:
+        }
+
         this.userService.registerUser(modelMapper.map(userRegisterBindingModel, UserServiceModel.class));
 
         return "redirect:login";
