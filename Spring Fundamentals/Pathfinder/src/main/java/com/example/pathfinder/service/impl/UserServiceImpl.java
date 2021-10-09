@@ -53,4 +53,12 @@ public class UserServiceImpl implements UserService {
         this.currentUser.setId(null)
                 .setUsername(null);
     }
+
+    @Override
+    public UserServiceModel findById(Long id) {
+
+        return this.userRepository.findById(id)
+                .map(userEntity -> modelMapper.map(userEntity, UserServiceModel.class))
+                .orElse(null);
+    }
 }

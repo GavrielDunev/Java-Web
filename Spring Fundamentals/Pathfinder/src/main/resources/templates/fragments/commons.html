@@ -19,10 +19,10 @@
             crossorigin=""></script>
 </head>
 <body>
-<header th:fragment="navigation">
+<header th:fragment="navigation" th:object="${@currentUser}">
     <nav class="main-nav">
         <ul>
-            <th:block th:if="${@currentUser.id == null}">
+            <th:block th:if="*{id == null}">
                 <li>
             <a href="/">Home</a>
             </li>
@@ -36,12 +36,12 @@
             <a href="/about">About</a>
             </li>
             </th:block>
-            <th:block th:unless="${@currentUser.id == null}">
+            <th:block th:unless="*{id == null}">
                 <li>
                     <a href="/routes/add">Add new route</a>
                 </li>
                 <li>
-                    <a href="/users/profile">Profile</a>
+                    <a th:href="@{users/profile/{id}(id = *{id})}">Profile</a>
                 </li>
                 <li>
                     <a href="/admin">Admin</a>
