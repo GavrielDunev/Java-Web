@@ -1,13 +1,17 @@
 package com.example.pathfinder.service.impl;
 
+import com.example.pathfinder.model.entity.RoleEntity;
 import com.example.pathfinder.model.entity.UserEntity;
 import com.example.pathfinder.model.entity.enums.LevelEnum;
+import com.example.pathfinder.model.entity.enums.RoleEnum;
 import com.example.pathfinder.model.service.UserServiceModel;
 import com.example.pathfinder.repository.UserRepository;
 import com.example.pathfinder.service.UserService;
 import com.example.pathfinder.util.CurrentUser;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,6 +30,7 @@ public class UserServiceImpl implements UserService {
     public void registerUser(UserServiceModel userServiceModel) {
         UserEntity user = modelMapper.map(userServiceModel, UserEntity.class);
         user.setLevel(LevelEnum.BEGINNER);
+        user.setRole(List.of(new RoleEntity().setRole(RoleEnum.USER)));
 
         this.userRepository.save(user);
     }

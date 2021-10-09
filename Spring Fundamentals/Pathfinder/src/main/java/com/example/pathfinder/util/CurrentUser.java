@@ -9,6 +9,7 @@ public class CurrentUser {
 
     private Long id;
     private String username;
+    private boolean isAdmin;
 
     public Long getId() {
         return id;
@@ -28,4 +29,12 @@ public class CurrentUser {
         return this;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public CurrentUser setAdmin(boolean admin) {
+        isAdmin = admin;
+        return this;
+    }
 }
