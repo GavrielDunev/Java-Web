@@ -8,20 +8,20 @@
 
         <div class="row g-3 align-items-center">
 
-            <form
-                    action="/"
-                    method="">
+            <form   th:object="${userLoginBindingModel}"
+                    th:action="@{/users/login}"
+                    th:method="post">
                 <div>
                     <div class="col-auto">
                         <label for="inputUsername" class="col-form-label ">Username</label>
                     </div>
                     <div class="col-auto">
                         <input type="text"
-                               name="username"
+                               th:field="*{username}"
                                required minlength="4" maxlength="20"
                                id="inputUsername"
                                class="form-control"
-                               aria-describedby="usernameHelpInline">
+                        aria-describedby="usernameHelpInline">
                     </div>
                 </div>
                 <div>
@@ -30,12 +30,13 @@
                     </div>
                     <div class="col-auto">
                         <input type="password"
-                               name="password"
+                               th:field="*{password}"
                                required minlength="4" maxlength="20"
                                id="inputPassword" class="form-control"
                                aria-describedby="passwordHelpInline">
                     </div>
                 </div>
+                <h5 th:if="${notExisting}" class="bg-danger">Incorrect username or password</h5>
                 <div class="d-flex justify-content-center mt-2">
                     <button class="btn btn-primary btn-block w-50" type="submit">Login</button>
                 </div>

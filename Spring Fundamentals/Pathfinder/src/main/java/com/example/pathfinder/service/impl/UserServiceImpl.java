@@ -36,4 +36,16 @@ public class UserServiceImpl implements UserService {
                 .map(userEntity -> modelMapper.map(userEntity, UserServiceModel.class))
                 .orElse(null);
     }
+
+    @Override
+    public void loginUser(Long id, String username) {
+        this.currentUser.setId(id)
+                .setUsername(username);
+    }
+
+    @Override
+    public void logout() {
+        this.currentUser.setId(null)
+                .setUsername(null);
+    }
 }

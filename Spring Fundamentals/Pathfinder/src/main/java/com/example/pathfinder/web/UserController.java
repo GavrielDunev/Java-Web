@@ -6,6 +6,7 @@ import com.example.pathfinder.model.service.UserServiceModel;
 import com.example.pathfinder.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -66,7 +67,7 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public String loginConfirm(UserLoginBindingModel userLoginBindingModel,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
@@ -83,15 +84,22 @@ public class UserController {
                 userLoginBindingModel.getPassword());
 
         if (user == null) {
-            redirectAttributes.addFlashAttribute("notExisting", false)
+            redirectAttributes.addFlashAttribute("notExisting", true)
                     .addFlashAttribute("userLoginBindingModel", userLoginBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userLoginBindingModel",
                             bindingResult);
 
             return "redirect:login";
         }
-       // this.userService.loginUser();
 
+        this.userService.loginUser(user.getId(), user.getUsername());
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        this.userService.logout();
         return "redirect:/";
     }
 }
