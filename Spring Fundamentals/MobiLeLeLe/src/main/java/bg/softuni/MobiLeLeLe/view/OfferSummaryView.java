@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.math.BigDecimal;
+import java.time.Instant;
 
 public class OfferSummaryView {
 
@@ -37,6 +38,35 @@ public class OfferSummaryView {
 
     @Column
     private String model;
+
+    @Column
+    private String brand;
+
+    private Instant created;
+
+    private Instant modified;
+
+    private String sellerFirstName;
+
+    private String sellerLastName;
+
+    public String getSellerFirstName() {
+        return sellerFirstName;
+    }
+
+    public OfferSummaryView setSellerFirstName(String sellerFirstName) {
+        this.sellerFirstName = sellerFirstName;
+        return this;
+    }
+
+    public String getSellerLastName() {
+        return sellerLastName;
+    }
+
+    public OfferSummaryView setSellerLastName(String sellerLastName) {
+        this.sellerLastName = sellerLastName;
+        return this;
+    }
 
     public Long getId() {
         return id;
@@ -116,6 +146,33 @@ public class OfferSummaryView {
 
     public OfferSummaryView setModel(String model) {
         this.model = model;
+        return this;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public OfferSummaryView setBrand(String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    public Instant getModified() {
+        return modified;
+    }
+
+    public OfferSummaryView setModified(Instant modified) {
+        this.modified = modified;
+        return this;
+    }
+
+    public Instant getCreated() {
+        return created;
+    }
+
+    public OfferSummaryView setCreated(Instant created) {
+        this.created = created;
         return this;
     }
 }

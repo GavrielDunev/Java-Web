@@ -65,10 +65,23 @@ public class OfferServiceImpl implements OfferService {
                 .map(this::map).collect(Collectors.toList());
     }
 
+    @Override
+    public OfferSummaryView getById(Long id) {
+        return this.offerRepository.findById(id)
+                .map(this::map)
+                .orElse(null);
+    }
+
+    @Override
+    public void deleteOffer(Long id) {
+        this.offerRepository.deleteById(id);
+    }
+
     private OfferSummaryView map(OfferEntity offerEntity) {
         OfferSummaryView offerSummaryView = modelMapper.map(offerEntity, OfferSummaryView.class);
 
-        offerSummaryView.setModel(offerEntity.getModel().getName());
+        offerSummaryView.setModel(offerEntity.getModel().getName())
+                .setBrand(offerEntity.getModel().getBrand().getName());
 
         return offerSummaryView;
     }

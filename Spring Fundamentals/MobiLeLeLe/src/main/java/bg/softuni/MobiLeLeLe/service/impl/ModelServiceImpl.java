@@ -27,14 +27,14 @@ public class ModelServiceImpl implements ModelService {
 
         ModelEntity threeSeries = new ModelEntity();
         threeSeries.setBrand(bmw)
-                .setName("threeSeries")
+                .setName("3 series")
                 .setCategory(CategoryEnum.CAR)
                 .setStartYear(1975)
                 .setImageUrl("https://en.wikipedia.org/wiki/BMW_3_Series#/media/File:BMW_G20_IMG_0167.jpg");
 
         ModelEntity fiveSeries = new ModelEntity();
         fiveSeries.setBrand(bmw)
-                .setName("fiveSeries")
+                .setName("5 series")
                 .setCategory(CategoryEnum.CAR)
                 .setStartYear(1972)
                 .setImageUrl("https://en.wikipedia.org/wiki/BMW_5_Series#/media/File:2018_BMW_520d_M_Sport_Automatic_2.0_(1).jpg");
