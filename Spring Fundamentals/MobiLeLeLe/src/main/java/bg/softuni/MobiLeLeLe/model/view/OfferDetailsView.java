@@ -1,78 +1,33 @@
-package bg.softuni.MobiLeLeLe.view;
+package bg.softuni.MobiLeLeLe.model.view;
 
 import bg.softuni.MobiLeLeLe.model.entity.enums.EngineEnum;
 import bg.softuni.MobiLeLeLe.model.entity.enums.TransmissionEnum;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-public class OfferSummaryView {
+public class OfferDetailsView {
 
     private Long id;
-
-    @Column(columnDefinition = "TEXT")
     private String description;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private EngineEnum engine;
-
-    @Column(nullable = false)
     private Integer mileage;
-
-    @Column(nullable = false)
     private BigDecimal price;
-
-    @Column
     private String imageUrl;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private TransmissionEnum transmission;
-
-    @Column(nullable = false)
     private Integer year;
-
-    @Column
     private String model;
-
-    @Column
     private String brand;
-
     private Instant created;
-
     private Instant modified;
-
     private String sellerFirstName;
-
     private String sellerLastName;
-
-    public String getSellerFirstName() {
-        return sellerFirstName;
-    }
-
-    public OfferSummaryView setSellerFirstName(String sellerFirstName) {
-        this.sellerFirstName = sellerFirstName;
-        return this;
-    }
-
-    public String getSellerLastName() {
-        return sellerLastName;
-    }
-
-    public OfferSummaryView setSellerLastName(String sellerLastName) {
-        this.sellerLastName = sellerLastName;
-        return this;
-    }
 
     public Long getId() {
         return id;
     }
 
-    public OfferSummaryView setId(Long id) {
+    public OfferDetailsView setId(Long id) {
         this.id = id;
         return this;
     }
@@ -81,7 +36,7 @@ public class OfferSummaryView {
         return description;
     }
 
-    public OfferSummaryView setDescription(String description) {
+    public OfferDetailsView setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -90,7 +45,7 @@ public class OfferSummaryView {
         return engine;
     }
 
-    public OfferSummaryView setEngine(EngineEnum engine) {
+    public OfferDetailsView setEngine(EngineEnum engine) {
         this.engine = engine;
         return this;
     }
@@ -99,7 +54,7 @@ public class OfferSummaryView {
         return mileage;
     }
 
-    public OfferSummaryView setMileage(Integer mileage) {
+    public OfferDetailsView setMileage(Integer mileage) {
         this.mileage = mileage;
         return this;
     }
@@ -108,7 +63,7 @@ public class OfferSummaryView {
         return price;
     }
 
-    public OfferSummaryView setPrice(BigDecimal price) {
+    public OfferDetailsView setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -117,7 +72,7 @@ public class OfferSummaryView {
         return imageUrl;
     }
 
-    public OfferSummaryView setImageUrl(String imageUrl) {
+    public OfferDetailsView setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -126,7 +81,7 @@ public class OfferSummaryView {
         return transmission;
     }
 
-    public OfferSummaryView setTransmission(TransmissionEnum transmission) {
+    public OfferDetailsView setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
         return this;
     }
@@ -135,7 +90,7 @@ public class OfferSummaryView {
         return year;
     }
 
-    public OfferSummaryView setYear(Integer year) {
+    public OfferDetailsView setYear(Integer year) {
         this.year = year;
         return this;
     }
@@ -144,7 +99,7 @@ public class OfferSummaryView {
         return model;
     }
 
-    public OfferSummaryView setModel(String model) {
+    public OfferDetailsView setModel(String model) {
         this.model = model;
         return this;
     }
@@ -153,17 +108,8 @@ public class OfferSummaryView {
         return brand;
     }
 
-    public OfferSummaryView setBrand(String brand) {
+    public OfferDetailsView setBrand(String brand) {
         this.brand = brand;
-        return this;
-    }
-
-    public Instant getModified() {
-        return modified;
-    }
-
-    public OfferSummaryView setModified(Instant modified) {
-        this.modified = modified;
         return this;
     }
 
@@ -171,8 +117,35 @@ public class OfferSummaryView {
         return created;
     }
 
-    public OfferSummaryView setCreated(Instant created) {
+    public OfferDetailsView setCreated(Instant created) {
         this.created = created;
+        return this;
+    }
+
+    public Instant getModified() {
+        return modified;
+    }
+
+    public OfferDetailsView setModified(Instant modified) {
+        this.modified = modified;
+        return this;
+    }
+
+    public String getSellerFirstName() {
+        return sellerFirstName;
+    }
+
+    public OfferDetailsView setSellerFirstName(String sellerFirstName) {
+        this.sellerFirstName = sellerFirstName;
+        return this;
+    }
+
+    public String getSellerLastName() {
+        return sellerLastName;
+    }
+
+    public OfferDetailsView setSellerLastName(String sellerLastName) {
+        this.sellerLastName = sellerLastName;
         return this;
     }
 }

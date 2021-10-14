@@ -3,11 +3,12 @@ package bg.softuni.MobiLeLeLe.service.impl;
 import bg.softuni.MobiLeLeLe.model.entity.OfferEntity;
 import bg.softuni.MobiLeLeLe.model.entity.enums.EngineEnum;
 import bg.softuni.MobiLeLeLe.model.entity.enums.TransmissionEnum;
+import bg.softuni.MobiLeLeLe.model.view.OfferDetailsView;
 import bg.softuni.MobiLeLeLe.repository.ModelRepository;
 import bg.softuni.MobiLeLeLe.repository.OfferRepository;
 import bg.softuni.MobiLeLeLe.repository.UserRepository;
 import bg.softuni.MobiLeLeLe.service.OfferService;
-import bg.softuni.MobiLeLeLe.view.OfferSummaryView;
+import bg.softuni.MobiLeLeLe.model.view.OfferSummaryView;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -62,13 +63,13 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public List<OfferSummaryView> getAllOffers() {
         return this.offerRepository.findAll().stream()
-                .map(this::map).collect(Collectors.toList());
+                .map(this::mapSummaryView).collect(Collectors.toList());
     }
 
     @Override
-    public OfferSummaryView getById(Long id) {
+    public OfferDetailsView getById(Long id) {
         return this.offerRepository.findById(id)
-                .map(this::map)
+                .map(this::mapDetailsView)
                 .orElse(null);
     }
 
@@ -77,12 +78,21 @@ public class OfferServiceImpl implements OfferService {
         this.offerRepository.deleteById(id);
     }
 
-    private OfferSummaryView map(OfferEntity offerEntity) {
+    private OfferSummaryView mapSummaryView(OfferEntity offerEntity) {
         OfferSummaryView offerSummaryView = modelMapper.map(offerEntity, OfferSummaryView.class);
 
         offerSummaryView.setModel(offerEntity.getModel().getName())
                 .setBrand(offerEntity.getModel().getBrand().getName());
 
         return offerSummaryView;
+    }
+
+    private OfferDetailsView mapDetailsView(OfferEntity offerEntity) {
+        OfferDetailsView offerDetailsView = modelMapper.map(offerEntity, OfferDetailsView.class);
+
+        offerDetailsView.setModel(offerEntity.getModel().getName())
+                .setBrand(offerEntity.getModel().getBrand().getName());
+
+        return offerDetailsView;
     }
 }
