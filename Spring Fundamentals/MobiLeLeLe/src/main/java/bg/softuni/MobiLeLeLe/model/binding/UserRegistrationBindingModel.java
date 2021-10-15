@@ -1,5 +1,7 @@
 package bg.softuni.MobiLeLeLe.model.binding;
 
+import bg.softuni.MobiLeLeLe.model.validator.UniqueUsername;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -13,6 +15,7 @@ public class UserRegistrationBindingModel {
     private String lastName;
     private String password;
     private String confirmPassword;
+    @UniqueUsername
     private String username;
 
 
