@@ -1,40 +1,26 @@
-package bg.softuni.MobiLeLeLe.model.binding;
+package bg.softuni.MobiLeLeLe.model.service;
 
 import bg.softuni.MobiLeLeLe.model.entity.enums.EngineEnum;
 import bg.softuni.MobiLeLeLe.model.entity.enums.TransmissionEnum;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
-public class OfferUpdateBindingModel {
+public class OfferUpdateServiceModel {
 
     private Long id;
-    @NotBlank
     private String description;
-    @NotNull
     private EngineEnum engine;
-    @NotNull
-    @PositiveOrZero
     private Integer mileage;
-    @NotNull
-    @Min(100)
     private BigDecimal price;
-    @NotBlank
     private String imageUrl;
-    @NotNull
     private TransmissionEnum transmission;
-    @NotNull
-    @Min(1900)
     private Integer year;
 
     public Long getId() {
         return id;
     }
 
-    public OfferUpdateBindingModel setId(Long id) {
+    public OfferUpdateServiceModel setId(Long id) {
         this.id = id;
         return this;
     }
@@ -43,7 +29,7 @@ public class OfferUpdateBindingModel {
         return description;
     }
 
-    public OfferUpdateBindingModel setDescription(String description) {
+    public OfferUpdateServiceModel setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -52,7 +38,7 @@ public class OfferUpdateBindingModel {
         return engine;
     }
 
-    public OfferUpdateBindingModel setEngine(EngineEnum engine) {
+    public OfferUpdateServiceModel setEngine(EngineEnum engine) {
         this.engine = engine;
         return this;
     }
@@ -61,7 +47,7 @@ public class OfferUpdateBindingModel {
         return mileage;
     }
 
-    public OfferUpdateBindingModel setMileage(Integer mileage) {
+    public OfferUpdateServiceModel setMileage(Integer mileage) {
         this.mileage = mileage;
         return this;
     }
@@ -70,7 +56,7 @@ public class OfferUpdateBindingModel {
         return price;
     }
 
-    public OfferUpdateBindingModel setPrice(BigDecimal price) {
+    public OfferUpdateServiceModel setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -79,7 +65,7 @@ public class OfferUpdateBindingModel {
         return imageUrl;
     }
 
-    public OfferUpdateBindingModel setImageUrl(String imageUrl) {
+    public OfferUpdateServiceModel setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
@@ -88,7 +74,7 @@ public class OfferUpdateBindingModel {
         return transmission;
     }
 
-    public OfferUpdateBindingModel setTransmission(TransmissionEnum transmission) {
+    public OfferUpdateServiceModel setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
         return this;
     }
@@ -97,7 +83,7 @@ public class OfferUpdateBindingModel {
         return year;
     }
 
-    public OfferUpdateBindingModel setYear(Integer year) {
+    public OfferUpdateServiceModel setYear(Integer year) {
         this.year = year;
         return this;
     }

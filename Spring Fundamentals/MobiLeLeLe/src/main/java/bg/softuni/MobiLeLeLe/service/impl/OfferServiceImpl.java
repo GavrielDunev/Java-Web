@@ -3,12 +3,14 @@ package bg.softuni.MobiLeLeLe.service.impl;
 import bg.softuni.MobiLeLeLe.model.entity.OfferEntity;
 import bg.softuni.MobiLeLeLe.model.entity.enums.EngineEnum;
 import bg.softuni.MobiLeLeLe.model.entity.enums.TransmissionEnum;
+import bg.softuni.MobiLeLeLe.model.service.OfferUpdateServiceModel;
 import bg.softuni.MobiLeLeLe.model.view.OfferDetailsView;
 import bg.softuni.MobiLeLeLe.repository.ModelRepository;
 import bg.softuni.MobiLeLeLe.repository.OfferRepository;
 import bg.softuni.MobiLeLeLe.repository.UserRepository;
 import bg.softuni.MobiLeLeLe.service.OfferService;
 import bg.softuni.MobiLeLeLe.model.view.OfferSummaryView;
+import bg.softuni.MobiLeLeLe.web.exception.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -76,6 +78,23 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void deleteOffer(Long id) {
         this.offerRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateOffer(OfferUpdateServiceModel offerUpdateServiceModel) {
+        OfferEntity offerEntity = this.offerRepository.findById(offerUpdateServiceModel.getId())
+                .orElseThrow(() -> new ObjectNotFoundException("Offer with id " + offerUpdateServiceModel.getId() +
+                        " not found !"));
+
+        offerEntity.setDescription(offerUpdateServiceModel.getDescription())
+                .setEngine(offerUpdateServiceModel.getEngine())
+                .setPrice(offerUpdateServiceModel.getPrice())
+                .setMileage(offerUpdateServiceModel.getMileage())
+                .setImageUrl(offerUpdateServiceModel.getImageUrl())
+                .setTransmission(offerUpdateServiceModel.getTransmission())
+                .setYear(offerUpdateServiceModel.getYear());
+
+        this.offerRepository.save(offerEntity);
     }
 
     private OfferSummaryView mapSummaryView(OfferEntity offerEntity) {

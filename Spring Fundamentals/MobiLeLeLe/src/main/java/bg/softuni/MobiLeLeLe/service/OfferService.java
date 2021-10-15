@@ -1,5 +1,6 @@
 package bg.softuni.MobiLeLeLe.service;
 
+import bg.softuni.MobiLeLeLe.model.service.OfferUpdateServiceModel;
 import bg.softuni.MobiLeLeLe.model.view.OfferDetailsView;
 import bg.softuni.MobiLeLeLe.model.view.OfferSummaryView;
 
@@ -13,4 +14,6 @@ public interface OfferService {
     OfferDetailsView getById(Long id);
 
     void deleteOffer(Long id);
+
+    void updateOffer(OfferUpdateServiceModel offerUpdateServiceModel);
 }
