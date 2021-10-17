@@ -2,6 +2,7 @@ package com.example.coffeeshop.model.service;
 
 public class UserServiceModel {
 
+    private Long id;
     private String username;
     private String firstName;
     private String lastName;
@@ -50,6 +51,15 @@ public class UserServiceModel {
 
     public UserServiceModel setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public UserServiceModel setId(Long id) {
+        this.id = id;
         return this;
     }
 }
