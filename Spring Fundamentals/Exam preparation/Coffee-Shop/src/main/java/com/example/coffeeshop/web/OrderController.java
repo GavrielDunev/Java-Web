@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,6 +42,14 @@ public class OrderController {
         }
 
         this.orderService.addOrder(this.modelMapper.map(orderAddBindingModel, OrderServiceModel.class));
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/orders/ready/{id}")
+    public String readyOrder(@PathVariable Long id) {
+
+        this.orderService.deleteOrderById(id);
 
         return "redirect:/";
     }

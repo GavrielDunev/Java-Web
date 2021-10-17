@@ -44,8 +44,8 @@ public class UserController {
 
         if (bindingResult.hasErrors() || !userRegisterBindingModel.getPassword()
                 .equals(userRegisterBindingModel.getConfirmPassword())
-                || !this.userService.isEmailFree(userRegisterBindingModel.getEmail())
-                || !this.userService.isUsernameFree(userRegisterBindingModel.getUsername())) {
+                || this.userService.isEmailFree(userRegisterBindingModel.getEmail())
+                || this.userService.isUsernameFree(userRegisterBindingModel.getUsername())) {
 
             redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel", bindingResult);

@@ -2,6 +2,9 @@ package com.example.coffeeshop.service;
 
 import com.example.coffeeshop.model.entity.UserEntity;
 import com.example.coffeeshop.model.service.UserServiceModel;
+import com.example.coffeeshop.model.view.UserViewModel;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -16,4 +19,6 @@ public interface UserService {
     void loginUser(UserServiceModel serviceModel);
 
     UserEntity findById(Long id);
+
+    List<UserViewModel> findAllOrderByCountOfOrders();
 }
