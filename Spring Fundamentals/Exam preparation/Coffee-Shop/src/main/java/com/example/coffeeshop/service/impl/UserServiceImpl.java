@@ -49,4 +49,10 @@ public class UserServiceImpl implements UserService {
         this.currentUser.setUsername(serviceModel.getUsername())
                 .setId(serviceModel.getId());
     }
+
+    @Override
+    public UserEntity findById(Long id) {
+        return this.userRepository.findById(id).orElse(null);
+    }
+
 }
