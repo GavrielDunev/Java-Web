@@ -1,8 +1,9 @@
-package com.example.pathfinder.model.view;
+package com.example.pathfinder.model.service;
 
 import com.example.pathfinder.model.entity.CategoryEntity;
 import com.example.pathfinder.model.entity.PictureEntity;
 import com.example.pathfinder.model.entity.UserEntity;
+import com.example.pathfinder.model.entity.enums.CategoryEnum;
 import com.example.pathfinder.model.entity.enums.LevelEnum;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class RouteServiceModel {
     private String description;
     private UserEntity author;
     private String videoUrl;
-    private List<CategoryEntity> categories;
+    private List<CategoryEnum> categories;
     private Set<PictureEntity> pictures;
 
     public Long getId() {
@@ -83,21 +84,21 @@ public class RouteServiceModel {
         return this;
     }
 
-    public List<CategoryEntity> getCategories() {
-        return categories;
-    }
-
-    public RouteServiceModel setCategories(List<CategoryEntity> categories) {
-        this.categories = categories;
-        return this;
-    }
-
     public Set<PictureEntity> getPictures() {
         return pictures;
     }
 
     public RouteServiceModel setPictures(Set<PictureEntity> pictures) {
         this.pictures = pictures;
+        return this;
+    }
+
+    public List<CategoryEnum> getCategories() {
+        return categories;
+    }
+
+    public RouteServiceModel setCategories(List<CategoryEnum> categories) {
+        this.categories = categories;
         return this;
     }
 }

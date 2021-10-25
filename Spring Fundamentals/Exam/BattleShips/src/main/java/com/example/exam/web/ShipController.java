@@ -1,6 +1,7 @@
 package com.example.exam.web;
 
 import com.example.exam.model.binding.ShipAddBingingModel;
+import com.example.exam.model.binding.ShipFireBindingModel;
 import com.example.exam.model.service.ShipServiceModel;
 import com.example.exam.service.ShipService;
 import org.modelmapper.ModelMapper;
@@ -42,6 +43,14 @@ public class ShipController {
         }
 
         this.shipService.addShip(modelMapper.map(shipAddBingingModel, ShipServiceModel.class));
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/ships/fire")
+    public String fire(ShipFireBindingModel shipFireBindingModel) {
+
+        this.shipService.fire(shipFireBindingModel);
 
         return "redirect:/";
     }
