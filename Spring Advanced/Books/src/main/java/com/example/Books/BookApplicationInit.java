@@ -18,14 +18,14 @@ public class BookApplicationInit implements CommandLineRunner {
 
 
     BookApplicationInit(AuthorRepository authorRepository,
-                         BookRepository bookRepository) {
+                        BookRepository bookRepository) {
 
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         if (bookRepository.count() == 0 && authorRepository.count() == 0) {
             initJovkov();
@@ -78,7 +78,7 @@ public class BookApplicationInit implements CommandLineRunner {
 
         List<BookEntity> allBooks = new ArrayList<>();
 
-        for (String book: books) {
+        for (String book : books) {
             BookEntity aBook = new BookEntity();
             aBook.setAuthor(author);
             aBook.setTitle(book);

@@ -57,10 +57,13 @@ public class BookServiceImpl implements BookService {
                 findByName(bookDTO.getAuthor().getName()).
                 orElseGet(() -> new AuthorEntity().setName(bookDTO.getAuthor().getName()));
 
+        authorRepository.save(author);
+
         BookEntity newBook = new BookEntity().
                 setAuthor(author).
                 setIsbn(bookDTO.getIsbn()).
                 setTitle(bookDTO.getTitle());
+
 
         return bookRepository.save(newBook).getId();
     }
@@ -70,6 +73,8 @@ public class BookServiceImpl implements BookService {
         AuthorEntity author = authorRepository.
                 findByName(bookDTO.getAuthor().getName()).
                 orElseGet(() -> new AuthorEntity().setName(bookDTO.getAuthor().getName()));
+
+        authorRepository.save(author);
 
         BookEntity bookEntity = bookRepository.findById(bookId)
                 .orElse(null);
