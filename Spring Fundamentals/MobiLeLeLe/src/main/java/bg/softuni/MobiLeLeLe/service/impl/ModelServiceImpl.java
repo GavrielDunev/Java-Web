@@ -30,14 +30,14 @@ public class ModelServiceImpl implements ModelService {
                 .setName("3 series")
                 .setCategory(CategoryEnum.CAR)
                 .setStartYear(1975)
-                .setImageUrl("https://en.wikipedia.org/wiki/BMW_3_Series#/media/File:BMW_G20_IMG_0167.jpg");
+                .setImageUrl("https://upload.wikimedia.org/wikipedia/commons/8/8d/BMW_G20_IMG_0167.jpg");
 
         ModelEntity fiveSeries = new ModelEntity();
         fiveSeries.setBrand(bmw)
                 .setName("5 series")
                 .setCategory(CategoryEnum.CAR)
                 .setStartYear(1972)
-                .setImageUrl("https://en.wikipedia.org/wiki/BMW_5_Series#/media/File:2018_BMW_520d_M_Sport_Automatic_2.0_(1).jpg");
+                .setImageUrl("https://upload.wikimedia.org/wikipedia/commons/7/7a/2020_BMW_530d_M_Sport_facelift.jpg");
 
         bmw.setModels(List.of(threeSeries, fiveSeries));
 
