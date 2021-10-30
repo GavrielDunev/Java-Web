@@ -2,7 +2,6 @@ package bg.softuni.MobiLeLeLe.web;
 
 import bg.softuni.MobiLeLeLe.model.view.BrandViewModel;
 import bg.softuni.MobiLeLeLe.service.BrandService;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
