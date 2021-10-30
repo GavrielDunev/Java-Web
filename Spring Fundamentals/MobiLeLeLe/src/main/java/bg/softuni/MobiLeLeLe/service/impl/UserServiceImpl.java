@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
                 .setActive(true)
                 .setRoles(Set.of(userRole));
 
-        newUser = this.userRepository.save(newUser);
+        this.userRepository.save(newUser);
     }
 
     private void initializeRoles() {

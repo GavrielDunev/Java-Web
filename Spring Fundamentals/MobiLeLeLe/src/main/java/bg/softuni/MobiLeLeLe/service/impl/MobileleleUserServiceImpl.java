@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MobileleleUserServiceImplementation implements UserDetailsService {
+public class MobileleleUserServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public MobileleleUserServiceImplementation(UserRepository userRepository) {
+    public MobileleleUserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
