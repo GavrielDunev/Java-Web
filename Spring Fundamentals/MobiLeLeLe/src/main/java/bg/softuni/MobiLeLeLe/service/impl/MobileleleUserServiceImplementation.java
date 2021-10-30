@@ -32,7 +32,7 @@ public class MobileleleUserServiceImplementation implements UserDetailsService {
         // The username will come from the HTML login form.
 
         UserEntity userEntity = this.userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User with name" + username + " was not found !"));
+                .orElseThrow(() -> new UsernameNotFoundException("User with name " + username + " was not found !"));
 
         return mapToUserDetails(userEntity);
     }
