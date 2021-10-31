@@ -124,4 +124,5 @@ public class OffersController {
 
         return "redirect:/offers/" + savedOffer.getId() + "/details";
     }
+
 }
