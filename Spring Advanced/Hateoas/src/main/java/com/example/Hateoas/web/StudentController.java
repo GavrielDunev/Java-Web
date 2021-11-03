@@ -91,6 +91,15 @@ public class StudentController {
 
         result.add(selfLink);
 
+        Link updateLink = linkTo(methodOn(StudentController.class).update(studentDTO.getId(), studentDTO))
+                .withRel("update");
+
+        result.add(updateLink);
+
+        Link orderLink = linkTo(methodOn(StudentController.class).getOrders(studentDTO.getId()))
+                .withRel("orders");
+
+        result.add(orderLink);
 
         return result.toArray(new Link[0]);
     }
