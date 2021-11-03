@@ -6,12 +6,10 @@ import bg.softuni.MobiLeLeLe.model.entity.enums.EngineEnum;
 import bg.softuni.MobiLeLeLe.model.entity.enums.TransmissionEnum;
 import bg.softuni.MobiLeLeLe.model.service.OfferAddServiceModel;
 import bg.softuni.MobiLeLeLe.model.service.OfferUpdateServiceModel;
-import bg.softuni.MobiLeLeLe.model.view.BrandViewModel;
 import bg.softuni.MobiLeLeLe.model.view.OfferDetailsView;
 import bg.softuni.MobiLeLeLe.service.BrandService;
 import bg.softuni.MobiLeLeLe.service.MobileleleUser;
 import bg.softuni.MobiLeLeLe.service.OfferService;
-import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,8 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.security.Principal;
-import java.util.List;
+
 
 @Controller
 public class OffersController {
@@ -107,7 +104,6 @@ public class OffersController {
     public String addOffer(Model model) {
 
         if (!model.containsAttribute("brandsModels")) {
-
             model.addAttribute("brandsModels", this.brandService.getAllBrands());
         }
 
