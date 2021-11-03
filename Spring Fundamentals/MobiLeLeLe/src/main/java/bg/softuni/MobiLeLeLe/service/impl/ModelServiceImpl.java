@@ -23,25 +23,28 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public void initializeModels() {
-        BrandEntity bmw = this.brandService.getBrandByName("BMW");
 
-        ModelEntity threeSeries = new ModelEntity();
-        threeSeries.setBrand(bmw)
-                .setName("3 series")
-                .setCategory(CategoryEnum.CAR)
-                .setStartYear(1975)
-                .setImageUrl("https://upload.wikimedia.org/wikipedia/commons/8/8d/BMW_G20_IMG_0167.jpg");
+        if (this.modelRepository.count() == 0) {
+            BrandEntity bmw = this.brandService.getBrandByName("BMW");
 
-        ModelEntity fiveSeries = new ModelEntity();
-        fiveSeries.setBrand(bmw)
-                .setName("5 series")
-                .setCategory(CategoryEnum.CAR)
-                .setStartYear(1972)
-                .setImageUrl("https://upload.wikimedia.org/wikipedia/commons/7/7a/2020_BMW_530d_M_Sport_facelift.jpg");
+            ModelEntity threeSeries = new ModelEntity();
+            threeSeries.setBrand(bmw)
+                    .setName("3 series")
+                    .setCategory(CategoryEnum.CAR)
+                    .setStartYear(1975)
+                    .setImageUrl("https://upload.wikimedia.org/wikipedia/commons/8/8d/BMW_G20_IMG_0167.jpg");
 
-        bmw.setModels(List.of(threeSeries, fiveSeries));
+            ModelEntity fiveSeries = new ModelEntity();
+            fiveSeries.setBrand(bmw)
+                    .setName("5 series")
+                    .setCategory(CategoryEnum.CAR)
+                    .setStartYear(1972)
+                    .setImageUrl("https://upload.wikimedia.org/wikipedia/commons/7/7a/2020_BMW_530d_M_Sport_facelift.jpg");
 
-        this.modelRepository.saveAll(List.of(threeSeries, fiveSeries));
+            bmw.setModels(List.of(threeSeries, fiveSeries));
+
+            this.modelRepository.saveAll(List.of(threeSeries, fiveSeries));
+        }
     }
 
 }
