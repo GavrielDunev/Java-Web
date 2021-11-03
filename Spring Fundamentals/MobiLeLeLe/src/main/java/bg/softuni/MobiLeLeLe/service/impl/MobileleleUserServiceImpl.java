@@ -2,6 +2,7 @@ package bg.softuni.MobiLeLeLe.service.impl;
 
 import bg.softuni.MobiLeLeLe.model.entity.UserEntity;
 import bg.softuni.MobiLeLeLe.repository.UserRepository;
+import bg.softuni.MobiLeLeLe.service.MobileleleUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -51,6 +52,6 @@ public class MobileleleUserServiceImpl implements UserDetailsService {
 
         // User is the spring implementation of UserDetails interface.
 
-        return new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
+        return new MobileleleUser(userEntity.getUsername(), userEntity.getPassword(), authorities);
     }
 }

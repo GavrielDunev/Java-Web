@@ -6,10 +6,14 @@ import bg.softuni.MobiLeLeLe.model.entity.enums.EngineEnum;
 import bg.softuni.MobiLeLeLe.model.entity.enums.TransmissionEnum;
 import bg.softuni.MobiLeLeLe.model.service.OfferAddServiceModel;
 import bg.softuni.MobiLeLeLe.model.service.OfferUpdateServiceModel;
+import bg.softuni.MobiLeLeLe.model.view.BrandViewModel;
 import bg.softuni.MobiLeLeLe.model.view.OfferDetailsView;
 import bg.softuni.MobiLeLeLe.service.BrandService;
+import bg.softuni.MobiLeLeLe.service.MobileleleUser;
 import bg.softuni.MobiLeLeLe.service.OfferService;
+import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class OffersController {
@@ -89,6 +95,7 @@ public class OffersController {
         }
 
         OfferUpdateServiceModel offerUpdateServiceModel = modelMapper.map(offerModel, OfferUpdateServiceModel.class);
+        offerUpdateServiceModel.setId(id);
 
         this.offerService.updateOffer(offerUpdateServiceModel);
 
@@ -98,18 +105,25 @@ public class OffersController {
 
     @GetMapping("/offers/add")
     public String addOffer(Model model) {
-        if (!model.containsAttribute("offerAddBindingModel")) {
-            model.addAttribute("offerAddBindingModel", new OfferAddBindingModel())
-                    .addAttribute("brandsModels", this.brandService.getAllBrands());
+
+        if (!model.containsAttribute("brandsModels")) {
+
+            model.addAttribute("brandsModels", this.brandService.getAllBrands());
         }
 
         return "offer-add";
     }
 
+    @ModelAttribute
+    public OfferAddBindingModel offerAddBindingModel() {
+        return new OfferAddBindingModel();
+    }
+
     @PostMapping("/offers/add")
     public String addOfferConfirm(@Valid OfferAddBindingModel offerAddBindingModel,
                                   BindingResult bindingResult,
-                                  RedirectAttributes redirectAttributes) {
+                                  RedirectAttributes redirectAttributes,
+                                  @AuthenticationPrincipal MobileleleUser user) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("offerAddBindingModel", offerAddBindingModel)
@@ -120,7 +134,7 @@ public class OffersController {
         }
 
         OfferAddServiceModel savedOffer = this.offerService.addOffer(this.modelMapper
-                .map(offerAddBindingModel, OfferAddServiceModel.class));
+                .map(offerAddBindingModel, OfferAddServiceModel.class), user.getUserUsername());
 
         return "redirect:/offers/" + savedOffer.getId() + "/details";
     }

@@ -18,6 +18,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -102,11 +103,10 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public OfferAddServiceModel addOffer(OfferAddServiceModel offerAddServiceModel) {
+    public OfferAddServiceModel addOffer(OfferAddServiceModel offerAddServiceModel, String ownerUsername) {
         OfferEntity newOffer = modelMapper.map(offerAddServiceModel, OfferEntity.class);
         newOffer.setCreated(Instant.now());
-        //TODO
-        //newOffer.setSeller(userRepository.findByUsername(currentUser.getUserName()).orElseThrow());
+        newOffer.setSeller(userRepository.findByUsername(ownerUsername).orElseThrow());
         ModelEntity model = modelRepository.getById(offerAddServiceModel.getModelId());
         newOffer.setModel(model);
 
