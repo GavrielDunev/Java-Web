@@ -6,7 +6,12 @@ import bg.softuni.MobiLeLeLe.model.entity.enums.UserRoleEnum;
 import bg.softuni.MobiLeLeLe.model.service.UserRegistrationServiceModel;
 import bg.softuni.MobiLeLeLe.repository.UserRepository;
 import bg.softuni.MobiLeLeLe.repository.UserRoleRepository;
+import bg.softuni.MobiLeLeLe.service.MobileleleUser;
 import bg.softuni.MobiLeLeLe.service.UserService;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +24,15 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
+    private final MobileleleUserServiceImpl mobileleleUserService;
 
-    public UserServiceImpl(PasswordEncoder passwordEncoder, UserRepository userRepository, UserRoleRepository userRoleRepository) {
+    public UserServiceImpl(PasswordEncoder passwordEncoder, UserRepository userRepository,
+                           UserRoleRepository userRoleRepository,
+                           MobileleleUserServiceImpl mobileleleUserService) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
+        this.mobileleleUserService = mobileleleUserService;
     }
 
     @Override
@@ -51,6 +60,14 @@ public class UserServiceImpl implements UserService {
                 .setRoles(Set.of(userRole));
 
         this.userRepository.save(newUser);
+
+        UserDetails principal = this.mobileleleUserService.loadUserByUsername(newUser.getUsername());
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(principal,
+                newUser.getPassword(),
+                principal.getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
     private void initializeRoles() {
