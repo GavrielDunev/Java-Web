@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 public class OfferAddBindingModel {
 
+    private Long id;
     @NotNull
     private Long modelId;
     @NotNull
@@ -100,4 +101,12 @@ public class OfferAddBindingModel {
         return this;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public OfferAddBindingModel setId(Long id) {
+        this.id = id;
+        return this;
+    }
 }
